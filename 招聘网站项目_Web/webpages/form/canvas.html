@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51JOB数据分析前端</title>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+        }
+
+        @font-face {
+            font-family: 'MyFont';
+            src: url('./STCAIYUN.TTF'), url('./STZHONGS.TTF');
+        }
+
+        header {
+            /* 设置背景颜色和布局 */
+            background-color: rgb(255, 225, 190);
+            height: 160px;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        /* .h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    color: rgb(206, 206, 206);
+} */
+
+        header>a {
+            /* 设置字体 */
+            font-family: '华文中宋';
+            font-size: 45px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            position: relative;
+            text-align: center;
+            top: 30px;
+            left: 35%;
+        }
+
+        header>span {
+            position: relative;
+            top: 30px;
+            left: 42%;
+        }
+
+        header>span>a {
+            text-decoration: none;
+            font-family: sans-serif;
+            color: rgb(160, 160, 160);
+            position: relative;
+            top: 0;
+            left: -1.5%;
+        }
+
+        #backtohome {
+            color: rgb(82, 82, 82);
+        }
+
+        header.search {
+            background-color: #222;
+            height: 20%;
+            position: relative;
+        }
+
+        /*百度搜索框*/
+
+        div.baidu {
+            position: absolute;
+            left: 35%;
+            top: 70%;
+        }
+
+        header>div>div>input.baidu {
+            height: 35px;
+            width: 350px;
+            background: rgb(255, 235, 209);
+            outline: none;
+            padding-left: 10px;
+            color: rgb(26, 26, 26);
+        }
+
+        #button4baidu {
+            color: rgb(27, 27, 27);
+            height: 35px;
+            width: 70px;
+            background-color: rgb(255, 206, 133);
+            font-family: 华文中宋;
+        }
+
+        #button4baidu:hover {
+            color: rgb(244, 244, 244);
+            background-color: rgb(13, 77, 253);
+            cursor: pointer;
+        }
+
+        #button4baidu:active {
+            color: rgb(255, 255, 255);
+            background: rgb(0, 74, 211);
+        }
+
+        main {
+            background-color: rgb(255, 225, 190);
+            height: 620px;
+        }
+
+        main>div.canvas {
+            background-color: rgb(255, 236, 218);
+            height: 95%;
+            width: 90%;
+            position: relative;
+            left: 5%;
+            top: 2.5%;
+            border-radius: 10px;
+            overflow: auto;
+        }
+
+        /*--------------------------------------------------*/
+        main>div>canvas>table {
+            overflow: auto;
+        }
+
+
+        main>div>canvas>table>tr,
+        td,
+        th {
+            border: 1px rgb(82, 82, 82) dotted;
+            border-collapse: collapse;
+            font-family: 华文中宋, 宋体, serif;
+            color: rgb(36, 36, 36);
+        }
+
+        /*--------------------------------------------------*/
+        footer {
+            height: 95px;
+            width: auto;
+            background-color: rgb(255, 225, 190);
+        }
+
+        footer>div {
+            position: relative;
+            text-align: center;
+            top: 20px;
+        }
+
+        footer>div>p {
+            color: black;
+            font-family: 华文中宋, 宋体;
+        }
+
+        footer>div>a {
+            text-decoration: none;
+            color: rgb(53, 53, 53);
+            font-family: 华文中宋;
+        }
+    </style>
+    <script>
+        // 百度搜索按钮按下之后的页面跳转函数
+        function onclick_baidu() {
+            var text_input;
+            text_input = document.getElementById('baidu').value;
+            if (text_input == "") {
+                window.location.href = "https://www.baidu.com/";
+            }
+            else {
+                search_text = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=" + text_input;
+                window.location.href = search_text;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="h1"></div>
+        <a href="">
+            职位基本信息列表
+        </a>
+        <span>
+            <a href="../" id="backtohome">回到首页</a>
+            <a href="https://www.51job.com">| 51JOB |</a>
+            <a href="https://github.com/Winshion">GitHub支持</a>
+        </span>
+        <!-- 搜索框条 -->
+        <div class="search">
+            <div class="baidu">
+                <input class="baidu" id="baidu" placeholder="百度搜索">
+                <button id="button4baidu" onclick="onclick_baidu()">百度一下</button>
+            </div>
+
+        </div>
+    </header>
+    <main>
+        <div class="canvas">
+            <table>
+                <tr class="head">
+                    <th>职位名称</th>
+                    <th>薪酬</th>
+                    <th>城市</th>
+                    <th>公司名称</th>
+                    <th>公司类型</th>
+                    <th>公司规模</th>
+                    <th>公司经营方向</th>
+                    <th>学历</th>
+                    <th>发布日期</th>
+                </tr>
+                {% for each_line in dlist %}
+                <tr>
+                    {% for each in each_line %}
+                    <td>{{ each }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <p class="description">©Copyright&nbsp;2021&nbsp;CQU&nbsp;Winshion|
+                重庆大学浅光居士</p>
+            <a href="https://www.cqu.edu.cn">重庆大学 |</a>
+            <a href="http://www.cse.cqu.edu.cn/index.htm">大数据与软件学院 |</a>
+            <a href="https://www.51job.com/">51JOB招聘人才网 |</a>
+            <a href="https://www.kaggle.com">Kaggle</a>
+        </div>
+    </footer>
+</body>
+
+</html>

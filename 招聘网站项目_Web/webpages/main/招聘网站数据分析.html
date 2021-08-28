@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51JOB数据分析前端</title>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+        }
+
+        @font-face {
+            font-family: 'MyFont';
+            src: url('./STCAIYUN.TTF'), url('./STZHONGS.TTF');
+        }
+
+        header {
+            /* 设置背景颜色和布局 */
+            background-color: rgb(255, 255, 255);
+            height: 200px;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        /* .h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 40px;
+            color: rgb(206, 206, 206);
+        } */
+
+        header>a {
+            /* 设置字体 */
+            font-family: 华文中宋, 宋体, serif;
+            font-size: 45px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            position: relative;
+            top: 40px;
+            left: 35%;
+        }
+
+        header>span {
+            position: relative;
+            top: 40px;
+            left: 39%;
+        }
+
+        header>span>a {
+            text-decoration: none;
+            font-family: sans-serif;
+            color: rgb(82, 82, 82);
+        }
+
+        header.search {
+            background-color: rgb(233, 233, 233);
+            height: 20%;
+        }
+
+        /*更新数据库按钮*/
+        header>div>div.update_database {
+            height: 40px;
+            width: 140px;
+            background-color: rgb(224, 224, 224);
+            position: absolute;
+            left: 10%;
+            top: 25%;
+            border-radius: 5px;
+        }
+
+        header>div>div.update_database>a {
+            text-decoration: none;
+            text-align: center;
+            color: rgb(27, 27, 27);
+            font-size: 18px;
+            position: relative;
+            top: 8px;
+            left: 18%;
+        }
+
+        header>div>div.update_database:hover {
+            background-color: rgb(59, 59, 59);
+        }
+
+        header>div>div.update_database>a:hover {
+            color: rgb(197, 197, 197);
+        }
+
+        /*城市搜索框*/
+
+        form.search {
+            position: relative;
+            left: 12%;
+            top: 70px;
+        }
+
+        header>div>form>input#city {
+            height: 35px;
+            width: 210px;
+            background: rgb(228, 228, 228);
+            outline: none;
+            padding-left: 10px;
+            color: rgb(70, 70, 70);
+        }
+
+        /* #button4city {
+            color: rgb(214, 214, 214);
+            height: 35px;
+            width: 45px;
+            background-color: rgb(44, 44, 44);
+            font-family: 华文中宋;
+        } */
+
+        /* #button4city:hover {
+            background-color: rgb(87, 87, 87);
+            cursor: pointer;
+        } */
+
+        #button4city:active {
+            color: rgb(32, 32, 32);
+            background: white;
+        }
+
+        /*职位搜索框*/
+
+        form.job {
+            position: relative;
+            left: 40%;
+            top: 32px;
+        }
+
+        header>div>form>input#job {
+            height: 35px;
+            width: 165px;
+            background: rgb(228, 228, 228);
+            outline: none;
+            padding-left: 10px;
+            color: rgb(22, 22, 22);
+            position: relative;
+            left: 13%;
+        }
+
+        #button4job {
+            color: rgb(49, 49, 49);
+            height: 35px;
+            width: 45px;
+            background-color: rgb(209, 209, 209);
+            font-family: 华文中宋;
+            position: relative;
+            left: 13%
+        }
+
+        #button4job:hover {
+            color: aliceblue;
+            background-color: rgb(58, 58, 58);
+            cursor: pointer;
+        }
+
+        #button4job:active {
+            color: rgb(255, 255, 255);
+            background: rgb(0, 0, 0);
+        }
+
+        /*百度搜索框*/
+        header>div>input.baidu {
+            height: 35px;
+            width: 165px;
+            background: rgb(228, 228, 228);
+            outline: none;
+            padding-left: 10px;
+            color: rgb(26, 26, 26);
+            position: relative;
+            left: 70%;
+            top: 32px;
+        }
+
+        #button4baidu {
+            color: rgb(49, 49, 49);
+            height: 35px;
+            width: 70px;
+            background-color: rgb(209, 209, 209);
+            font-family: 华文中宋;
+            position: relative;
+            left: 70%;
+            top: 32px;
+        }
+
+        #button4baidu:hover {
+            color: white;
+            background-color: rgb(13, 77, 253);
+            cursor: pointer;
+        }
+
+        #button4baidu:active {
+            color: rgb(255, 255, 255);
+            background: rgb(0, 64, 182);
+        }
+
+        main {
+            background-color: rgb(236, 236, 236);
+            height: 620px;
+        }
+
+        /*四个大超链接*/
+
+        main>div {
+            background: rgb(255, 255, 255);
+            float: left;
+            width: 20%;
+            height: 80%;
+            position: relative;
+            top: 5%;
+            left: 20px;
+            margin: 2%;
+            border-radius: 0.5cm;
+        }
+
+        main>div.wordcloud:hover {
+            background: rgb(255, 75, 75);
+            transition: 0.5s linear;
+        }
+
+        main>div.form:hover {
+            background: rgb(255, 186, 36);
+            transition: 0.5s linear;
+        }
+
+        main>div.boxgraph:hover {
+            background: rgb(50, 190, 109);
+            transition: 0.5s linear;
+        }
+
+        main>div.intro:hover {
+            background: rgb(36, 111, 197);
+            transition: 0.5s linear;
+        }
+
+        main>div>a {
+            display: block;
+            text-decoration: none;
+            color: rgb(201, 201, 201);
+            font-size: 150px;
+            font-family: '华文彩云', '黑体', serif;
+            padding-left: 15px;
+            position: relative;
+            left: -1.5%;
+            text-align: center;
+            top: 25%;
+        }
+
+        /* main>div>a:hover {
+            color: rgb(53, 53, 53);
+        } */
+
+        main>div>div {
+            font-size: 45px;
+            font-family: 小米兰亭, 微软雅黑, sans-serif;
+            position: relative;
+            top: 30%;
+            text-align: center;
+            vertical-align: center;
+        }
+
+        main>div>div.wc {
+            color: rgb(255, 75, 75);
+        }
+
+        main>div>div.fm {
+            color: rgb(255, 186, 36);
+        }
+
+        main>div>div.bg {
+            color: rgb(50, 190, 109);
+        }
+
+        main>div>div.intr {
+            color: rgb(36, 111, 197);
+        }
+
+        footer {
+            height: 95px;
+            width: auto;
+            background-color: rgb(255, 255, 255);
+        }
+
+        footer>div {
+            position: relative;
+            text-align: center;
+            top: 20px;
+        }
+
+        footer>div>p {
+            color: black;
+            font-family: 华文中宋, 宋体;
+        }
+
+        footer>div>a {
+            text-decoration: none;
+            color: rgb(110, 110, 110);
+            font-family: 华文中宋, 宋体;
+        }
+    </style>
+
+    <script>
+        // 百度搜索按钮按下之后的页面跳转函数
+        function onclick_baidu() {
+            var text_input;
+            text_input = document.getElementById('baidu').value;
+            if (text_input == "") {
+                window.location.href = "https://www.baidu.com/";
+            }
+            else {
+                search_text = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=" + text_input;
+                window.location.href = search_text;
+            }
+        }
+        function onclick_update_db() {
+            city = document.getElementById("city").value;
+            job = document.getElementById("job").value;
+            if (city == "" || job == "") {
+                window.alert("请输入需要查询的职位\n然后直接点击“更新数据库”按钮！");
+            }
+            else {
+                window.alert("系统正在处理中！\n请耐心等待约1分钟！");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="h1"></div>
+        <a href="">
+            51JOB 招聘查询系统
+        </a>
+        <span>
+            <a href="https://www.51job.com">51JOB |</a>
+            <a href="https://github.com/Winshion">GitHub支持</a>
+        </span>
+        <!-- 搜索框条 -->
+        <div class="search">
+            <div class="update_database">
+                <a href="craw/" onclick="onclick_update_db()">更新数据库</a>
+            </div>
+            <form action="search/" method="post" class="search">
+                {% csrf_token %}
+                <input id="city" name="city" list="cities" placeholder="请输入城市【默认请选择全国】...">
+                <datalist id="cities">
+                    {% for city in cities %}
+                    <option value="{{ city }}">
+                        {% endfor %}
+                </datalist>
+                <input type="text" id="job" name="job" placeholder="请输入职位...">
+                <input type="submit" value="搜索" id="button4job"></input>
+            </form>
+
+            <input class="baidu" name="baidu" id="baidu" placeholder="百度搜索">
+            <button id="button4baidu" onclick="onclick_baidu()">百度一下</button>
+        </div>
+    </header>
+    <main>
+
+        <div class="wordcloud">
+            <a href="../wordcloud/">💭</a>
+            <div class="wc">热词云图</div>
+        </div>
+
+        <div class="form">
+            <a href="../form/">🧾</a>
+            <div class="fm">职位列表</div>
+        </div>
+
+        <div class="boxgraph">
+            <a href="../cpny_wc/">📈</a>
+            <div class="bg">图表分析</div>
+        </div>
+
+        <div class="intro">
+            <a href="../intro/">🔍</a>
+            <div class="intr">使用说明</div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <p class="description">©Copyright&nbsp;2021&nbsp;CQU&nbsp;Winshion|
+                重庆大学浅光居士</p>
+            <a href="https://www.cqu.edu.cn">重庆大学 |</a>
+            <a href="http://www.cse.cqu.edu.cn/index.htm">大数据与软件学院 |</a>
+            <a href="https://www.51job.com">51JOB前程无忧 |</a>
+            <a href="https://www.kaggle.com">Kaggle</a>
+        </div>
+    </footer>
+</body>
+
+</html>
